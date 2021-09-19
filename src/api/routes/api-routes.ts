@@ -1,10 +1,8 @@
 import { Router } from 'express';
-import { ErrorLogger } from '../modules/error-logger';
+import { auth } from '../modules/auth-client';
+import { UserDocument } from '../../data/models/user';
+import { bot } from '../../bot';
 import Deps from '../../utils/deps';
-import { auth } from '../..modules/auth-client';
-import { UserDocument } from '../../../data/models/user';
-import { bot } from '../../../bot';
-import Deps from '../../../utils/deps';
 
 const errorLogger = Deps.get<ErrorLogger>(ErrorLogger);
 
