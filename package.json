@@ -5,7 +5,7 @@
   "main": "bot.js",
   "scripts": {
     "test": "ts-mocha test/test.ts",
-    "start": "ts-node src/bot.ts",
+    "start": "npx ts-node src/bot.ts",
     "dev": "ts-node-dev src/bot.ts",
     "watch": "tsc --watch",
     "serve:ssr": "node dist/twopg-dashboard/server/main.js"
