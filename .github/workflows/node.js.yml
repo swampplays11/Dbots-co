@@ -28,6 +28,5 @@ jobs:
 
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm i typescript
-    - run: npm start
+        cache: 'npx'
+    - run: npx ts-node src/bot.ts
