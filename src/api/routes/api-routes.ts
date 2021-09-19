@@ -10,7 +10,7 @@ import { ErrorLogger } from '../modules/error-logger';
 const errorLogger = Deps.get<ErrorLogger>(ErrorLogger);
 
 export async function sendError(req: any, res: any, { message, status }: APIError) {
-  status ??= Internal server error;
+  status ??= 500;
   await Deps.get<ErrorLogger>(ErrorLogger).api(status, message, req.originalUrl);
   return res.status(status).json({ message });
 }
@@ -28,7 +28,7 @@ export function validateIfCanVote(savedVoter: UserDocument) {
   if (savedVoter.lastVotedAt > oneDayAgo) {
     const timeLeftMs = new Date(savedVoter.lastVotedAt.getTime() + twelveHoursMs).getTime() - Date.now();
     const hoursLeft = (timeLeftMs / 1000 / 60 / 60);
-    throw new APIError(You are being rate limited);
+    throw new APIError(429);
   }
 }
 
@@ -58,7 +58,7 @@ export class APIError extends Error {
     [500, 'Internal server error'],
   ])
 
-  constructor(public readonly status = Bad request) {
+  constructor(public readonly status = 400) {
     super(APIError.messages.get(status));
   }
 }
@@ -92,7 +92,7 @@ router.get('/auth', async (req, res) => {
   try {
     const code = req.query.code?.toString();
     if (!code)
-      throw new APIError(Unauthorized);
+      throw new APIError(401);
     
     const key = await auth.getAccess(code);
     res.redirect(`${process.env.DASHBOARD_URL}/auth?key=${key}`);
