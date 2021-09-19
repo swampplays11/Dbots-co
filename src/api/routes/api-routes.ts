@@ -101,7 +101,7 @@ router.get('/auth', async (req, res) => {
 
 router.post('/error', async (req, res) => {
   try {
-    await Deps.get<ErrorLogger>(ErrorLogger);.process.env.DASHBOARD_URL(req.query.message?.toString());
+    await Deps.get<ErrorLogger>(ErrorLogger);.${process.env.DASHBOARD_URL}(req.query.message?.toString());
   } catch (error) {
     await sendError(req, res, error);
   }
