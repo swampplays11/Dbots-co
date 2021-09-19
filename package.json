@@ -11,7 +11,7 @@
     "serve:ssr": "node dist/twopg-dashboard/server/main.js"
   },
   "engines": {
-    "node": "12.x"
+    "node": "16.x"
   },
   "keywords": [],
   "author": "ADAMJR#0001",
