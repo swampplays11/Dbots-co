@@ -11,7 +11,7 @@
     "serve:ssr": "node dist/twopg-dashboard/server/main.js"
   },
   "engines": {
-    "node": "16.x"
+    "node": "16.x",
     "typescript": "4.4.x"
   },
   "keywords": [],
