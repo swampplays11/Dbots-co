@@ -86,8 +86,6 @@ export enum HexColor {
 
 export const router = Router();
 
-const errorLogger = Deps.get<ErrorLogger>(ErrorLogger);
-
 router.get('/', (req, res) => res.json({ hello: 'earth' }));
 
 router.get('/auth', async (req, res) => {
