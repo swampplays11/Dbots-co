@@ -11,7 +11,7 @@ const errorLogger = Deps.get<ErrorLogger>(ErrorLogger);
 
 export async function sendError(req: any, res: any, { message, status }: APIError) {
   status ??= 500;
-  await errorLogger.api(status, message, req.originalUrl);
+  await Deps.get<ErrorLogger>(ErrorLogger).api(status, message, req.originalUrl);
   return res.status(status).json({ message });
 }
 
@@ -101,7 +101,7 @@ router.get('/auth', async (req, res) => {
 
 router.post('/error', async (req, res) => {
   try {
-    await errorLogger.dashboard(req.query.message?.toString());
+    await Deps.get<ErrorLogger>(ErrorLogger);.dashboard(req.query.message?.toString());
   } catch (error) {
     await sendError(req, res, error);
   }
